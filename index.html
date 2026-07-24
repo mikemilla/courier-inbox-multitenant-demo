@@ -227,14 +227,14 @@ function Inbox({ jwt }) {
       import { CourierInbox, useCourier } from "https://esm.sh/@trycourier/courier-react@9.2.3?deps=react@19.2.8,react-dom@19.2.8";
 
       const h = React.createElement;
-      const TABS = [...CONFIG.tenants, { id: undefined, name: "Raw" }];
+      const TABS = [...CONFIG.tenants, { id: undefined, name: "No Tenant" }];
       const decodeJwt = (jwt) => { try { return JSON.parse(atob(jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))); } catch { return {}; } };
 
       function statusText(tenant) {
         const isRaw = !tenant.id;
         const c = decodeJwt(CONFIG.jwt);
         const head = isRaw
-          ? [`Raw — no tenant`, ``, `const courier = useCourier();`, ``, `courier.shared.signIn({`, `  userId: "${CONFIG.userId}",`, `  jwt,`, `  // no tenantId`, `});`, ``, `→ No accountId filter → all ${CONFIG.tenants.length} tenants' messages.`]
+          ? [`No tenant`, ``, `const courier = useCourier();`, ``, `courier.shared.signIn({`, `  userId: "${CONFIG.userId}",`, `  jwt,`, `  // no tenantId`, `});`, ``, `→ No accountId filter → all ${CONFIG.tenants.length} tenants' messages.`]
           : [`Tenant "${tenant.name}"`, ``, `const courier = useCourier();`, ``, `courier.shared.signIn({`, `  userId:  "${CONFIG.userId}",`, `  jwt,`, `  tenantId:"${tenant.id}",`, `});`, ``, `→ Filtered by accountId:"${tenant.id}".`];
         return head.concat([``, `JWT tenant_scope: ${c.tenant_scope}`]).join("\n");
       }
