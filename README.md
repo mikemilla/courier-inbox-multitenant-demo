@@ -1,6 +1,6 @@
 # Courier Inbox — multi-tenant demo (React)
 
-A tiny, runnable example of a **multi-tenant [Courier Inbox](https://www.courier.com/docs/platform/inbox/inbox-overview)** rendered with
+A tiny, single-file example of a **multi-tenant [Courier Inbox](https://www.courier.com/docs/platform/inbox/inbox-overview)** rendered with
 [`@trycourier/courier-react`](https://www.courier.com/docs/platform/tenants/inbox-with-tenants).
 
 - One user, one JWT, four tenants — each tab re-runs `signIn()` with a different `tenantId`.
@@ -9,32 +9,26 @@ A tiny, runnable example of a **multi-tenant [Courier Inbox](https://www.courier
 
 ## Run it
 
-No build, no install, no API key. Just serve the folder:
+**Just open `index.html`** — double-click it, or drag it into a browser. No install, no
+build, no server, no API key. React and `@trycourier/courier-react` load from a CDN, and a
+read-only demo JWT is baked in, so it renders immediately.
 
-```bash
-python3 -m http.server 8790
-```
-
-Then open **http://localhost:8790**.
-
-> Any static file server works (e.g. `npx serve`). The demo ships with a pre-minted,
-> read-only token scoped to one demo user, so it renders immediately.
+_(If your browser is strict about opening local files, serve the folder instead:
+`python3 -m http.server` then open http://localhost:8000.)_
 
 ## What's in here
 
 | File | What it is |
 |------|------------|
-| `index.html` | The guide + the live React inbox |
-| `config.js` | The demo user, the pre-minted JWT, and the 4 tenants |
-| `seed.sh` | Recreate the tenants + messages in **your** workspace: `COURIER_API_KEY=<key> ./seed.sh` |
-| `token-server.mjs` | Reference backend token endpoint (`COURIER_API_KEY=<key> node token-server.mjs`) |
+| `index.html` | The whole thing — the guide + the live React inbox, token inlined |
+| `token-server.mjs` | Reference backend token endpoint for production (`COURIER_API_KEY=<key> node token-server.mjs`) |
 
 ## Point it at your own workspace
 
 1. Follow the steps in the page: create a tenant → add the user → send a scoped message → mint a JWT.
-2. Paste your minted JWT into `jwt` in `config.js` (and update `userId` / `tenants`).
+2. In `index.html`, edit the `CONFIG` object near the bottom — set `userId`, paste your minted `jwt`, and list your `tenants`.
 
 Full walkthrough: [Inbox with tenants](https://www.courier.com/docs/platform/tenants/inbox-with-tenants).
 
 > The bundled token is scoped to a single demo user and expires ~120 days after it was minted.
-> Re-mint anytime with `seed.sh` or your backend.
+> Never ship your API key to the browser — mint short-lived JWTs on your backend (`token-server.mjs`).
