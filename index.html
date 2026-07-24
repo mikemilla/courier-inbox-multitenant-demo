@@ -208,7 +208,7 @@ function Inbox({ jwt }) {
       // ONE user, ONE JWT, FOUR tenants. The JWT is tenant-independent — the same
       // token works for every tab; only `tenantId` changes at signIn(). Pre-minted,
       // read-only, scoped to the demo user (~120-day expiry). In production you'd
-      // fetch this from your backend (see token-server.mjs).
+      // fetch this from your backend (minted with your Courier API key).
       const CONFIG = {
         userId: "multitenant-demo-user",
         jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6InVzZXJfaWQ6bXVsdGl0ZW5hbnQtZGVtby11c2VyIGluYm94OnJlYWQ6bWVzc2FnZXMgaW5ib3g6d3JpdGU6ZXZlbnRzIHJlYWQ6cHJlZmVyZW5jZXMgd3JpdGU6cHJlZmVyZW5jZXMgcmVhZDpicmFuZHMiLCJ0ZW5hbnRfc2NvcGUiOiJwdWJsaXNoZWQvZW52XzAxa3lhanptMWRmcWFhOGZlampzbmpmMnBoIiwidGVuYW50X2lkIjoid3JrXzAxa3lhanpqdzdlc2pyeTN4OTZuaHRmam50L2Vudl8wMWt5YWp6bTFkZnFhYThmZWpqc25qZjJwaCIsImlhdCI6MTc4NDkxODY0MywiZXhwIjoxNzk1Mjg2NjQzLCJqdGkiOiJkMDc4YTJmOC01YjUwLTQ1YWYtOWYyMy1mM2Q3YzU0YjNjOGIifQ.JPvJbMZFwafGXSlV81mMlHR7EoUL9mvLdcI647to7lE",

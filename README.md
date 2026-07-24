@@ -18,10 +18,7 @@ _(If your browser is strict about opening local files, serve the folder instead:
 
 ## What's in here
 
-| File | What it is |
-|------|------------|
-| `index.html` | The whole thing — the guide + the live React inbox, token inlined |
-| `token-server.mjs` | Reference backend token endpoint for production (`COURIER_API_KEY=<key> node token-server.mjs`) |
+Just `index.html` — the guide + the live React inbox, with the token inlined. That's the whole demo.
 
 ## Point it at your own workspace
 
@@ -31,4 +28,4 @@ _(If your browser is strict about opening local files, serve the folder instead:
 Full walkthrough: [Inbox with tenants](https://www.courier.com/docs/platform/tenants/inbox-with-tenants).
 
 > The bundled token is scoped to a single demo user and expires ~120 days after it was minted.
-> Never ship your API key to the browser — mint short-lived JWTs on your backend (`token-server.mjs`).
+> Never ship your API key to the browser — mint short-lived JWTs on your backend.
