@@ -79,8 +79,9 @@
          into the widget's internals (e.g. uppercasing its feed title). */
       .inbox-col { position: sticky; top: 20px; }
       .col-label { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0 0 10px; font-weight: 700; }
-      .cx-tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
-      .cx-tab { appearance: none; border: 1px solid transparent; border-bottom: none; background: transparent; padding: 8px 13px; font-size: 13px; cursor: pointer; color: var(--muted); border-radius: 8px 8px 0 0; position: relative; top: 1px; font-family: inherit; }
+      .cx-tabs { display: flex; flex-wrap: nowrap; gap: 2px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+      .cx-tabs::-webkit-scrollbar { display: none; }
+      .cx-tab { appearance: none; border: 1px solid transparent; border-bottom: none; background: transparent; padding: 8px 11px; font-size: 12.5px; cursor: pointer; color: var(--muted); border-radius: 8px 8px 0 0; position: relative; top: 1px; font-family: inherit; white-space: nowrap; flex: 0 0 auto; }
       .cx-tab:hover { color: var(--ink); }
       .cx-tab[aria-selected="true"] { color: var(--ink); font-weight: 650; background: var(--card); border-color: var(--line); border-bottom: 1px solid var(--card); }
       .cx-tab[data-raw] { font-style: italic; }
@@ -226,7 +227,7 @@ function Inbox({ jwt }) {
       import { CourierInbox, useCourier } from "https://esm.sh/@trycourier/courier-react@9.2.3?deps=react@19.2.8,react-dom@19.2.8";
 
       const h = React.createElement;
-      const TABS = [...CONFIG.tenants, { id: undefined, name: "Raw — no tenant" }];
+      const TABS = [...CONFIG.tenants, { id: undefined, name: "Raw" }];
       const decodeJwt = (jwt) => { try { return JSON.parse(atob(jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))); } catch { return {}; } };
 
       function statusText(tenant) {
